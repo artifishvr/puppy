@@ -10,6 +10,19 @@ import Layout from "../layouts/Layout.astro";
         aria-label="Click to bark">🐕</button
       >
     </div>
+    <div class="absolute bottom-2 left-4 text-sm">
+      <p>
+        with ❤️ by <a href="https://arti.gay" class="underline text-blue-300"
+          >arti</a
+        >
+      </p>
+      <p>
+        barking from
+        <a href="https://youtu.be/BfSmr4IaLsY" class="underline text-blue-300"
+          >Kaustysaur</a
+        >
+      </p>
+    </div>
   </main>
 
   <script>
@@ -24,27 +37,25 @@ import Layout from "../layouts/Layout.astro";
       const randomIndex = Math.floor(Math.random() * barks.length);
       const randomBark = barks[randomIndex];
 
-      // Create new audio context on each click
-      const audioContext = new window.AudioContext();
+      // i LOVE web audio
+      const audioContext = new (window.AudioContext ||
+        (window as any).webkitAudioContext)();
       const audio = new Audio(randomBark);
       audio.volume = 0.5;
       const source = audioContext.createMediaElementSource(audio);
       source.connect(audioContext.destination);
 
       try {
-        // Resume audio context (needed for Chrome)
         if (audioContext.state === "suspended") {
           await audioContext.resume();
         }
 
-        // Wait for audio to be loaded
         await new Promise((resolve, reject) => {
           audio.addEventListener("canplaythrough", resolve, { once: true });
           audio.addEventListener("error", reject, { once: true });
           audio.load();
         });
 
-        // Play and wait for completion
         await audio.play();
 
         await new Promise((resolve) => {
