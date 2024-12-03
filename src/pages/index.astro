@@ -23,7 +23,7 @@ const images = await Astro.glob("/src/stickers/*").then((files) => {
             <a
               href={image.src}
               download
-              class="absolute -top-2 -right-2 w-8 h-8  text-white bg-zinc-600 bg-opacity-60 rounded-md flex items-center justify-center hover:bg-opacity-100 transition-all z-10"
+              class="absolute -top-2 -right-2 w-8 h-8 text-white bg-zinc-600/60 rounded-md flex items-center justify-center hover:bg-zinc-600 transition-all z-10"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
