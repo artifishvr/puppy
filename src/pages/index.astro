@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Picture } from "astro:assets";
 
 const images = await Astro.glob("/src/stickers/*").then((files) => {
   return files.map((file) => file.default).reverse();
@@ -24,6 +25,7 @@ const images = await Astro.glob("/src/stickers/*").then((files) => {
               href={image.src}
               download
               class="absolute -top-2 -right-2 w-8 h-8 text-white bg-zinc-600/60 rounded-md flex items-center justify-center hover:bg-zinc-600 transition-all z-10"
+              aria-label="Download image"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -42,11 +44,12 @@ const images = await Astro.glob("/src/stickers/*").then((files) => {
                 <line x1="12" x2="12" y1="15" y2="3" />
               </svg>
             </a>
-            <img
+
+            <Picture
+              formats={["avif", "webp"]}
               class="object-contain h-full w-48 rounded-lg"
-              src={image.src}
+              src={image}
               alt=""
-              loading="lazy"
             />
           </div>
         ))
