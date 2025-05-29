@@ -9,12 +9,10 @@ const images = await Astro.glob("/src/stickers/*").then((files) => {
 
 <Layout title="woof">
   <main>
-    <button
-      class="hover:scale-110 transition-transform"
-      aria-label="Click to bark"
-    >
-      <h1 class="text-4xl m-4 font-bold">woof woof bark bark</h1>
-    </button>
+    <h1 class="text-4xl m-4 font-bold">woof woof bark bark</h1>
+    <p class="m-4">this domain is for sale! its probably cheaper than you think. email <a href="mailto:puppy@arti.gay" class="text-blue-500 hover:underline">puppy@arti.gay</a> if you're interested!</p>
+    <p class="m-4">new domain for this page going forward will be <a href="https://pup.eepy.ca" target="_blank" class="text-blue-500 hover:underline">pup.eepy.ca</a></p>
+
     <div
       class="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 justify-items-center mt-2"
     >
@@ -70,54 +68,6 @@ const images = await Astro.glob("/src/stickers/*").then((files) => {
           class="underline text-blue-300">JOYNET</a
         >
       </p>
-      <p>
-        barking from
-        <a href="https://youtu.be/BfSmr4IaLsY" class="underline text-blue-300"
-          >Kaustysaur</a
-        >
-      </p>
     </div>
   </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const button = document.querySelector("button");
-      if (!button) return;
-      button.addEventListener("click", onClick);
-    });
-
-    async function onClick() {
-      const barks = ["/bark1.mp3", "/bark2.mp3", "/bark3.mp3", "/bark4.mp3"];
-      const randomIndex = Math.floor(Math.random() * barks.length);
-      const randomBark = barks[randomIndex];
-
-      // i LOVE web audio
-      const audioContext = new (window.AudioContext ||
-        (window as any).webkitAudioContext)();
-      const audio = new Audio(randomBark);
-      audio.volume = 0.5;
-      const source = audioContext.createMediaElementSource(audio);
-      source.connect(audioContext.destination);
-
-      try {
-        if (audioContext.state === "suspended") {
-          await audioContext.resume();
-        }
-
-        await new Promise((resolve, reject) => {
-          audio.addEventListener("canplaythrough", resolve, { once: true });
-          audio.addEventListener("error", reject, { once: true });
-          audio.load();
-        });
-
-        await audio.play();
-
-        await new Promise((resolve) => {
-          audio.addEventListener("ended", resolve, { once: true });
-        });
-      } catch (error) {
-        console.error("Audio playback failed:", error);
-      }
-    }
-  </script>
 </Layout>
