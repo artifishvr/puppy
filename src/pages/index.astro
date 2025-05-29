@@ -10,8 +10,11 @@ const images = await Astro.glob("/src/stickers/*").then((files) => {
 <Layout title="woof">
   <main>
     <h1 class="text-4xl m-4 font-bold">woof woof bark bark</h1>
-    <p class="m-4">this domain is for sale! its probably cheaper than you think. email <a href="mailto:puppy@arti.gay" class="text-blue-500 hover:underline">puppy@arti.gay</a> if you're interested!</p>
-    <p class="m-4">new domain for this page going forward will be <a href="https://pup.eepy.ca" target="_blank" class="text-blue-500 hover:underline">pup.eepy.ca</a></p>
+
+    <div id="domainSaleText" style="display: none;">
+      <p class="m-4">this domain is for sale! its probably cheaper than you think. email <a href="mailto:puppy@arti.gay" class="text-blue-500 hover:underline">puppy@arti.gay</a> if you're interested!</p>
+      <p class="m-4">new domain for this page going forward will be <a href="https://pup.eepy.ca" target="_blank" class="text-blue-500 hover:underline">pup.eepy.ca</a></p>
+    </div>
 
     <div
       class="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-7 justify-items-center mt-2"
@@ -71,3 +74,15 @@ const images = await Astro.glob("/src/stickers/*").then((files) => {
     </div>
   </footer>
 </Layout>
+
+<script>
+document.onload = function() {
+  const domainSaleTextElement = document.getElementById('domainSaleText');
+  if (domainSaleTextElement) {
+    const currentHostname = window.location.hostname;
+    if (currentHostname === 'vt.dog' || currentHostname === 'www.vt.dog') {
+      domainSaleTextElement.style.display = 'block';
+    }
+  }
+}
+</script>
