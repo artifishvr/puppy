@@ -11,9 +11,9 @@ const images = await Astro.glob("/src/stickers/*").then((files) => {
   <main>
     <h1 class="text-4xl m-4 font-bold">woof woof bark bark</h1>
 
-    <div id="domainSaleText" style="display: none;">
-      <p class="m-4">this domain is for sale <a href="https://sedo.com/search/details/?domain=vt.dog&origin=domaindetails" class="text-blue-500 hover:underline" target="_blank">here</a> btw</p>
-      <p class="m-4">new domain for this page is <a href="https://puppy.arti.lol" target="_blank" class="text-blue-500 hover:underline">puppy.arti.lol</a></p>
+    <div>
+      <p class="m-4">vt.dog is for sale <a href="https://sedo.com/search/details/?domain=vt.dog&origin=domaindetails" class="text-blue-500 hover:underline" target="_blank">here</a>!</p>
+      <p class="m-4">new domain for this page is <a href="https://puppy.arti.lol" class="text-blue-500 hover:underline">puppy.arti.lol</a></p>
     </div>
 
     <div
@@ -73,16 +73,4 @@ const images = await Astro.glob("/src/stickers/*").then((files) => {
       </p>
     </div>
   </footer>
-
-<script>
-document.onload = function() {
-  const domainSaleTextElement = document.getElementById('domainSaleText');
-  if (domainSaleTextElement) {
-    const currentHostname = window.location.hostname;
-    if (currentHostname === 'vt.dog' || currentHostname === 'www.vt.dog') {
-      domainSaleTextElement.style.display = 'block';
-    }
-  }
-}
-</script>
 </Layout>
